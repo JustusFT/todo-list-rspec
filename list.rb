@@ -1,5 +1,6 @@
 class List
-  attr_reader :title, :tasks
+  attr_reader :title
+  attr_accessor :tasks
 
   def initialize(title, tasks = [])
     @title = title
@@ -7,14 +8,17 @@ class List
   end
 
   def add_task(task)
+    return false if task.class != Task
     tasks << task
   end
 
   def complete_task(index)
+    return false unless tasks[index]
     tasks[index].complete!
   end
 
   def delete_task(index)
+    return false unless tasks[index]
     tasks.delete_at(index)
   end
 
